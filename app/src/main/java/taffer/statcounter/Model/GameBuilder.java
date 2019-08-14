@@ -1,4 +1,4 @@
-package taffer.statcounter;
+package taffer.statcounter.Model;
 
 import java.io.Serializable;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package taffer.statcounter;
+package taffer.statcounter.Model;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;

@@ -1,4 +1,4 @@
-package taffer.statcounter;
+package taffer.statcounter.Model;
 
 public class Player {
     private String color;
