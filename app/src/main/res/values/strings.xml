@@ -12,4 +12,17 @@
     <string name="color">Color</string>
     <string name="player1">Player 1</string>
     <string name="player2">Player 2</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="game_new">New Game</string>
+    <string name="game2PlayerQuick">Quick 2 Player Game</string>
+    <string name="game1PlayerQuick">Quick Game</string>
+    <string name="title">StatCounter</string>
+
 </resources>

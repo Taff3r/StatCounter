@@ -1,6 +1,8 @@
 package taffer.statcounter.Model;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private String color;
     private String name;
     private int lifepoints = 20;
