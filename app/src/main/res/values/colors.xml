@@ -6,4 +6,8 @@
     <color name="colorGamemode">#bae1ff</color>
     <color name="colorPlayers">#ffffba</color>
     <color name="pastelGrey">#cfcfc4</color>
+    <color name="pastelDarkBlue">#5757FF</color>
+    <color name="pastelPink">#FFBBFF</color>
+    <color name="pastelGreen">#B5FFC8</color>
+    <color name="pastelYellow">#FFFFC8</color>
 </resources>

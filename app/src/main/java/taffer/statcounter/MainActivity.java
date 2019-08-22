@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -59,13 +60,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.actionbar, menu);
-
         return true;
     }
 
     public void nextStage(View v){
         int initialStep = this.step;
-
         switch(this.step){
             case 0:
                 this.step += this.chosePlayerCount();
@@ -73,9 +72,19 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 this.step += this.setGameMode();
                 break;
+            case 2:
+                this.step += this.addPlayer();
+                Log.e("step", step + "");
+                break;
+            case 3:
+                this.addPlayer();
+                this.step++;
+                break;
+            case 4:
+                this.step += this.confirm();
+                break;
         }
 
-        Log.d("Ini, curr", initialStep + " | " + this.step);
         if(this.step != initialStep){
             this.changeStep();
         }
@@ -85,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
         RadioGroup rGroup = findViewById(R.id.rGroupPlayers);
         int id = rGroup.getCheckedRadioButtonId();
 
-        Log.e("ID", id + "");
         if(id == -1){
             displayToast("Please select one of the options.");
             return 0;
@@ -100,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private int confirm(){
+        return 0;
+    }
+
     private int setGameMode(){
         Spinner spinner = findViewById(R.id.spinner);
         String selected = spinner.getSelectedItem().toString();
@@ -107,13 +119,34 @@ public class MainActivity extends AppCompatActivity {
         return 1;
     }
 
+    private int addPlayer(){
+        ImageView selected = findViewById(R.id.ivSelected);
+        EditText et = findViewById(R.id.etName);
+        String name = "";
+        if(et.getText() == null) {
+            if(this.step == 2){
+                name = "Player 1";
+            }else{
+                name = "Player 2";
+            }
+        }else{
+            name = et.getText().toString();
+        }
+
+        if(this.gb.getNoOfPlayers() == 2){
+            this.gb.addPlayer(name, selected.getImageTintList().getDefaultColor()+"");
+            return 1;
+        }else{
+            this.gb.addPlayer(name, selected.getImageTintList().getDefaultColor()+"");
+            return 2;
+        }
+    }
 
     private void changeStep(){
         FragmentTransaction ft;
-        Log.e("STEP", this.step + "");
         switch (this.step){
             case 0:
-                 ft = getSupportFragmentManager().beginTransaction();
+                ft = getSupportFragmentManager().beginTransaction();
                 ft.add(R.id.fragment_frame, new PlayerFragment()).commit();
                 break;
             case 1:
@@ -123,11 +156,20 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 ft = getSupportFragmentManager().beginTransaction();
                 Bundle b = new Bundle();
-                b.putInt("#PLAYERS", this.gb.getNoOfPlayers());
+                b.putInt("PLAYER", 1);
                 Fragment f = new PlayerConfigFragment();
                 f.setArguments(b);
                 ft.replace(R.id.fragment_frame, f).commit();
                 break;
+            case 3:
+               ft = getSupportFragmentManager().beginTransaction();
+               Bundle bun = new Bundle();
+               bun.putInt("PLAYER", 2);
+               Log.e("HELLO", 2+ "");
+               Fragment fragment = new PlayerConfigFragment();
+               fragment.setArguments(bun);
+               ft.replace(R.id.fragment_frame, fragment).commit();
+               Log.e("FRAG", bun.toString());
         }
     }
 
