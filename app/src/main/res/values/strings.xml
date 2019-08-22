@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">StatCounter</string>
+    <string name="playerChoiceOne">One player</string>
+    <string name="playerChoiceTwo">Two players</string>
 </resources>
