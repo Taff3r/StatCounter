@@ -15,6 +15,9 @@ public class GameBuilder implements Serializable {
         return this;
     }
 
+    public int getNoOfPlayers(){
+        return this.noOfPlayers;
+    }
     public GameBuilder setNoOfPlayers(int noOfPlayers){
         this.noOfPlayers = noOfPlayers;
         return this;

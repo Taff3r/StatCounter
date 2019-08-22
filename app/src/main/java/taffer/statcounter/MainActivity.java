@@ -1,6 +1,7 @@
 package taffer.statcounter;
 
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +11,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import taffer.statcounter.Fragments.GamemodeFragment;
+import taffer.statcounter.Fragments.PlayerConfigFragment;
 import taffer.statcounter.Fragments.PlayerFragment;
 import taffer.statcounter.Model.GameBuilder;
 
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         if(savedInstanceState != null){
             this.gb = (GameBuilder) savedInstanceState.get("BUILDER");
+            this.step = savedInstanceState.getInt("STEP");
         }else{
             this.gb = new GameBuilder();
         }
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putSerializable("BUILDER", this.gb);
+        outState.putInt("STEP", this.step);
         super.onSaveInstanceState(outState);
     }
 
@@ -62,7 +68,10 @@ public class MainActivity extends AppCompatActivity {
 
         switch(this.step){
             case 0:
-                this.step = this.chosePlayerCount();
+                this.step += this.chosePlayerCount();
+                break;
+            case 1:
+                this.step += this.setGameMode();
                 break;
         }
 
@@ -90,8 +99,18 @@ public class MainActivity extends AppCompatActivity {
             return 1;
         }
     }
+
+    private int setGameMode(){
+        Spinner spinner = findViewById(R.id.spinner);
+        String selected = spinner.getSelectedItem().toString();
+        this.gb.setGameMode(selected);
+        return 1;
+    }
+
+
     private void changeStep(){
         FragmentTransaction ft;
+        Log.e("STEP", this.step + "");
         switch (this.step){
             case 0:
                  ft = getSupportFragmentManager().beginTransaction();
@@ -99,7 +118,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 1:
                 ft = getSupportFragmentManager().beginTransaction();
-                ft.add(R.id.fragment_frame, new GamemodeFragment()).commit();
+                ft.replace(R.id.fragment_frame, new GamemodeFragment()).commit();
+                break;
+            case 2:
+                ft = getSupportFragmentManager().beginTransaction();
+                Bundle b = new Bundle();
+                b.putInt("#PLAYERS", this.gb.getNoOfPlayers());
+                Fragment f = new PlayerConfigFragment();
+                f.setArguments(b);
+                ft.replace(R.id.fragment_frame, f).commit();
                 break;
         }
     }
@@ -110,6 +137,13 @@ public class MainActivity extends AppCompatActivity {
             }
             this.toast = Toast.makeText(this, s, Toast.LENGTH_LONG);
             this.toast.show();
+    }
+
+    public void onColorClick(View v){
+        ImageView clicked = (ImageView) v;
+        ImageView display = findViewById(R.id.ivSelected);
+        display.setVisibility(View.VISIBLE);
+        display.setImageTintList(clicked.getImageTintList());
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

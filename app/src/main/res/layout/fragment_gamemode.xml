@@ -19,4 +19,37 @@
         android:onClick="nextStage"
         app:srcCompat="@drawable/ic_next" />
 
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/ivDice"
+        android:layout_width="133dp"
+        android:layout_height="151dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="402dp"
+        app:srcCompat="@drawable/ic_dices" />
+
+    <TextView
+        android:id="@+id/tvPick"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="119dp"
+        android:layout_marginBottom="361dp"
+        android:text="@string/pickGameMode"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="287dp"
+        android:entries="@array/gameModes"/>
 </RelativeLayout>
