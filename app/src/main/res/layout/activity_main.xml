@@ -8,9 +8,10 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="161dp"
+        android:layout_height="50dp"
         android:layout_marginTop="484dp"
+        android:background="@drawable/custom_shape"
         android:onClick="quick2PlayerGame"
         android:text="@string/game2PlayerQuick"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +23,7 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="404dp"
+        android:layout_marginTop="420dp"
         android:onClick="quickGame"
         android:text="@string/game1PlayerQuick"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,9 +46,9 @@
         android:id="@+id/ivLogo"
         android:layout_width="164dp"
         android:layout_height="157dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="76dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_logo" />
