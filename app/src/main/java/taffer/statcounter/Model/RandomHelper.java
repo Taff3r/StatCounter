@@ -11,6 +11,6 @@ public class RandomHelper implements Serializable {
     }
 
     public boolean flipCoin(){
-        return rand.nextInt(1) == 0;
+        return rand.nextBoolean();
     }
 }

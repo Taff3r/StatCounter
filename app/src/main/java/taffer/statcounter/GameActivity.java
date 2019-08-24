@@ -146,11 +146,12 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
         if(orientationDetector.detectEvent(sensorEvent) == Detector.SUCCESS){
             Log.e("FLIPPED", "FLIPPIN FLIP!");
             // TODO: Flip coin!
+            boolean res = this.game.flipCoin();
+            this.fGame.setCoinValue(res);
         }else if(shakeDetector.detectEvent(sensorEvent) == Detector.SUCCESS){
             // TODO: Throw dice!
             int res = this.game.rollDie();
             this.fGame.setDieValue(res);
-            Log.e("SHAKE", "IT BABY!");
         }
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,17 +45,24 @@ public class Game1Fragment extends Fragment {
     public void setDieValue(int i){
         // TODO: Hide coin if exists
         this.v.findViewById(R.id.ivDie).setVisibility(View.VISIBLE);
-        this.v.findViewById(R.id.ivDie).setZ(2);
+
         this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
-        this.v.findViewById(R.id.tvDieValue).setZ(4);
+
         ((TextView) this.v.findViewById(R.id.tvDieValue)).setText(i + "");
         ((TextView) this.v.findViewById(R.id.tvDieValue)).setTextColor(Color.WHITE);
     }
 
-    public void setCoinValue(int i){
+    public void setCoinValue(boolean res){
         // TODO: Hide die if exists
-        this.v.findViewById(R.id.ivDie).setVisibility(View.VISIBLE);
+        //this.v.findViewById(R.id.ivDie).setVisibility(View.VISIBLE);
+        this.v.findViewById(R.id.ivDie).setZ(2);
         this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
-        this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
+        this.v.findViewById(R.id.tvDieValue).setZ(4);
+        Log.e("RES", res + "");
+        if(res){
+            ((TextView) this.v.findViewById(R.id.tvDieValue)).setText("TAILS");
+        }else{
+            ((TextView) this.v.findViewById(R.id.tvDieValue)).setText("HEADS");
+        }
     }
 }
