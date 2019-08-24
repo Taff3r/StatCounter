@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void quickGame(View v){
         // TODO: ADD DEFAULT 1 AND 2 PLAYER NAMES AND COLORS FOR QUICK GAME
-        Game g = new GameBuilder().setNoOfPlayers(1).setGameMode("Constructed").addPlayer("Player 1", "someColor").build();
+        Game g = new GameBuilder().setNoOfPlayers(1).setGameMode("Constructed").addPlayer("Player 1", 0).build();
         Intent i = new Intent(this, GameActivity.class);
         i.putExtra("GAME", g);
         startActivity(i);
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void quick2PlayerGame(View v){
         // TODO: ADD DEFAULT SETTINGS FOR QUICK GAME
-        Game g = new GameBuilder().setNoOfPlayers(2).setGameMode("Constructed").addPlayer("Player 1", "someColor").addPlayer("Player 2", "anotherColor").build();
+        Game g = new GameBuilder().setNoOfPlayers(2).setGameMode("Constructed").addPlayer("Player 1", 5).addPlayer("Player 2", 5).build();
         Intent i = new Intent(this, GameActivity.class);
         i.putExtra("GAME", g);
         startActivity(i);

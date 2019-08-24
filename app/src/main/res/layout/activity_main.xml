@@ -32,12 +32,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/tvSettings"
+        android:layout_width="112dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="596dp"
+        android:background="@drawable/custom_shape"
+        android:text="@string/settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button5"
         android:layout_width="112dp"
         android:layout_height="45dp"
         android:layout_marginTop="340dp"
-        android:onClick="newGame"
         android:background="@drawable/custom_shape"
+        android:onClick="newGame"
         android:text="@string/game_new"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

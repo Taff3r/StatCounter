@@ -134,10 +134,10 @@ public class BuilderActivity extends AppCompatActivity {
             return 0;
         }
         if(this.gb.getNoOfPlayers() == 2){
-            this.gb.addPlayer(name, selected.getImageTintList().getDefaultColor()+"");
+            this.gb.addPlayer(name, selected.getImageTintList().getDefaultColor());
             return 1;
         }else{
-            this.gb.addPlayer(name, selected.getImageTintList().getDefaultColor()+"");
+            this.gb.addPlayer(name, selected.getImageTintList().getDefaultColor());
             return 2;
         }
     }
@@ -171,6 +171,7 @@ public class BuilderActivity extends AppCompatActivity {
             case 4:
                 // TODO: Add confirmation Fragment
                 Intent i = new Intent(this, GameActivity.class);
+                i.putExtra("GAME", this.gb.build());
                 startActivity(i);
                 break;
         }
@@ -194,7 +195,7 @@ public class BuilderActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if(this.step == 0){
-            return;
+            return; // TODO: Replace this activity with start menu
         }else if(this.step==4 && this.gb.getNoOfPlayers() == 1){
            this.step = 2;
            changeStep();

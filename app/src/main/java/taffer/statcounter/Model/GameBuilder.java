@@ -7,7 +7,7 @@ import java.util.Map;
 public class GameBuilder implements Serializable {
     private int noOfPlayers;
     private int count = 0;
-    private Map<String, Player> players = new HashMap<>();
+    private Map<Integer, Player> players = new HashMap<>();
     private String gameMode;
 
     public GameBuilder setGameMode(String gameMode){
@@ -23,9 +23,9 @@ public class GameBuilder implements Serializable {
         return this;
     }
 
-    public GameBuilder addPlayer(String name, String color){
+    public GameBuilder addPlayer(String name, int color){
         this.count++;
-        this.players.put("" + count, new Player(name, color, getLifePointsFromGameMode()));
+        this.players.put(count, new Player(name, color, getLifePointsFromGameMode()));
         return this;
     }
 

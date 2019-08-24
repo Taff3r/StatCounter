@@ -15,7 +15,7 @@
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="https://github.com/VilhelmA/TILT/blob/master/app/src/main/java/com/example/tilt/MainActivity.javaandroid.intent.action.MAIN" />
+                <action android:name=".action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
