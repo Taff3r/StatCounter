@@ -13,8 +13,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import taffer.statcounter.Fragments.Game1Fragment;
 import taffer.statcounter.Model.Game;
@@ -23,6 +26,7 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private Game game;
     private int players;
+    private Game1Fragment fGame; // TODO: MAKE A GAMEFRAGMENT INTERFACE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,9 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             Log.e("SHIT", "FUCKY WUCKY");
         }
         Toolbar toolbar = findViewById(R.id.bar);
+        toolbar.setBackgroundColor(this.game.getPlayerColor(1));
+        toolbar.setTitle("");
+        //((LinearLayout) findViewById(R.id.nav_view).getLa).setBackgroundColor(this.game.getPlayerColor(1)); // TODO: Maybe change color of nav_header
         setSupportActionBar(toolbar);
         this.players = this.game.noOfPlayers();
         drawer = findViewById(R.id.drawer_layout);
@@ -51,10 +58,12 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             FrameLayout layout = findViewById(R.id.game_container);
             layout.setBackgroundColor(this.game.getPlayerColor(1));
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            Fragment f = new Game1Fragment();
+            Game1Fragment f = new Game1Fragment();
+            this.fGame = f;
             Bundle b = new Bundle();
             b.putString("HP",this.game.getPlayerHealth(1) + "");
-            b.putString("HP",this.game.getPlayerName(1) + "");
+            b.putString("NAME",this.game.getPlayerName(1) + "");
+            b.putInt("COLOR",this.game.getPlayerColor(1));
             f.setArguments(b);
             ft.replace(R.id.game_container,f).commit();
 
@@ -65,8 +74,35 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void changeHP(View v){
+
+        if(game.noOfPlayers() == 1){
+            switch (v.getId()){
+                case R.id.fabMinus1:
+                    this.game.addPoints(1, -1);
+                    break;
+                case R.id.fabMinus5:
+                    this.game.addPoints(1, -5);
+                    break;
+                case R.id.fabPlus1:
+                    this.game.addPoints(1, 1);
+                    break;
+
+                    case R.id.fabPlus5:
+                    this.game.addPoints(1, 5);
+                    break;
+            }
+        }else{
+            // TODO: Two players
+        }
+
+        this.fGame.setHP(this.game.getPlayerHealth(1));
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // TODO: CHANGE TOOLTIP TO A RANDOM
+        ((TextView) findViewById(R.id.toolTip)).setText(getResources().getStringArray(R.array.toolTips)[0]);
         ActionBar actionBar = getSupportActionBar();
         switch (item.getItemId()) {
             // INSERT ITEMS HERE

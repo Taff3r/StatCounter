@@ -12,11 +12,11 @@ public class Game implements Serializable {
         this.players = players;
     }
 
-    public void addPoints(String playerNumber, int points){
+    public void addPoints(int playerNumber, int points){
         this.players.get(playerNumber).addPoints(points);
     }
 
-    public void addPoisonCounters(String playerNumber, int counters){
+    public void addPoisonCounters(int playerNumber, int counters){
         this.players.get(playerNumber).addPoisonCounters(counters);
     }
 

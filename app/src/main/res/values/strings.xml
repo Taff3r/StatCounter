@@ -25,4 +25,9 @@
     <string name="game1PlayerQuick">Quick Game</string>
     <string name="title">StatCounter</string>
     <string name="settings">Settings</string>
+
+    <string-array name="toolTips">
+        <item name="tip1"> Shake your phone to throw a D20!</item>
+        <item name="tip2"> Turn your phone upside down to throw a coin!</item>
+    </string-array>
 </resources>

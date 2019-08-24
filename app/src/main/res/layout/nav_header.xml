@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linLayout"
     android:layout_width="match_parent"
     android:layout_height="176dp"
-    android:background="@color/pastelPink"
+    android:background="@color/pastelDarkBlue"
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="16dp"
@@ -18,15 +19,16 @@
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
         android:textColor="@color/pastelGreen"
-        android:text="Simon Tenggren"
+        android:text="StatCounter"
         android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
+        android:id="@+id/toolTip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/pastelGreen"
         android:textStyle="italic"
-        android:text="&quot;If you tell the truth, you don't have to remember anything.&quot;" />
+        />
 
 </LinearLayout>

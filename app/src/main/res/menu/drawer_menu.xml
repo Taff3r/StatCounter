@@ -6,19 +6,24 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_calendar"
-            android:icon="@drawable/ic_circle"
-            android:title="Calendar" />
+            android:id="@+id/nav_reset"
+            android:icon="@drawable/ic_redo_circular_arrow"
+            android:title="Reset Game" />
 
         <item
-            android:id="@+id/nav_event"
+            android:id="@+id/nav_newGame"
             android:icon="@drawable/ic_add"
-            android:title="New event" />
+            android:title="New Game" />
 
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_brush"
-            android:title="Manage Calendars" />
+            android:id="@+id/nav_quick"
+            android:icon="@drawable/ic_avatar"
+            android:title="New Quick Game" />
+
+        <item
+            android:id="@+id/nav_quick2"
+            android:icon="@drawable/ic_players"
+            android:title="New 2 Player Quick Game" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_dices"
