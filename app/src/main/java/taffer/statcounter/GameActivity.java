@@ -91,8 +91,10 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
         this.shakeDetector = new ShakeDetector();
         this.orientationDetector = new OrientationDetector(OrientationDetector.UPSIDEDOWN, 1);
     }
-    public void changeHP(View v){
 
+
+
+    public void changeHP(View v){
         if(game.noOfPlayers() == 1){
             switch (v.getId()){
                 case R.id.fabMinus1:
@@ -146,6 +148,8 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             // TODO: Flip coin!
         }else if(shakeDetector.detectEvent(sensorEvent) == Detector.SUCCESS){
             // TODO: Throw dice!
+            int res = this.game.rollDie();
+            this.fGame.setDieValue(res);
             Log.e("SHAKE", "IT BABY!");
         }
     }

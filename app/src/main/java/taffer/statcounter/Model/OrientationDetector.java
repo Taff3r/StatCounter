@@ -20,7 +20,6 @@ public class OrientationDetector implements Detector {
      * @param successOrientation, either a custom float[] or one predefined.
      * @param accuracy, the accuracy of detection.
      */
-
     public OrientationDetector(float[] successOrientation, double accuracy){
         this.successOrientation = successOrientation;
         this.accuracy =  accuracy;

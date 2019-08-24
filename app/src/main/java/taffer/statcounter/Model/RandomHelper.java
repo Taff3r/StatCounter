@@ -7,7 +7,7 @@ public class RandomHelper implements Serializable {
     private Random rand = new Random();
 
     public int rollDie(){
-        return rand.nextInt(6) + 1;
+        return rand.nextInt(20) + 1;
     }
 
     public boolean flipCoin(){

@@ -1,5 +1,6 @@
 package taffer.statcounter.Fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -38,5 +39,22 @@ public class Game1Fragment extends Fragment {
 
     public void setHP(int hp){
         ((TextView) v.findViewById(R.id.tvHP)).setText(hp + "");
+    }
+
+    public void setDieValue(int i){
+        // TODO: Hide coin if exists
+        this.v.findViewById(R.id.ivDie).setVisibility(View.VISIBLE);
+        this.v.findViewById(R.id.ivDie).setZ(2);
+        this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
+        this.v.findViewById(R.id.tvDieValue).setZ(4);
+        ((TextView) this.v.findViewById(R.id.tvDieValue)).setText(i + "");
+        ((TextView) this.v.findViewById(R.id.tvDieValue)).setTextColor(Color.WHITE);
+    }
+
+    public void setCoinValue(int i){
+        // TODO: Hide die if exists
+        this.v.findViewById(R.id.ivDie).setVisibility(View.VISIBLE);
+        this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
+        this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
     }
 }

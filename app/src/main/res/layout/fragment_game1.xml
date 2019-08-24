@@ -16,6 +16,18 @@
         android:text="20"
         android:textSize="24sp" />
 
+    <TextView
+        android:id="@+id/tvDieValue"
+        android:layout_width="40dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="166dp"
+        android:layout_marginTop="188dp"
+        android:text="20"
+        android:textSize="24sp"
+        android:visibility="invisible" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabMinus1"
         android:onClick="changeHP"
@@ -73,5 +85,16 @@
         android:layout_marginTop="171dp"
         android:layout_marginEnd="140dp"
         app:srcCompat="@drawable/ic_heart" />
+
+    <ImageView
+        android:id="@+id/ivDie"
+        android:layout_width="167dp"
+        android:layout_height="153dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="369dp"
+        android:layout_marginEnd="97dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/ic_logo" />
 
 </RelativeLayout>
