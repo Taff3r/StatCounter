@@ -1,5 +1,9 @@
 package taffer.statcounter;
 
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -20,13 +24,19 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import taffer.statcounter.Fragments.Game1Fragment;
+import taffer.statcounter.Model.Detector;
 import taffer.statcounter.Model.Game;
+import taffer.statcounter.Model.OrientationDetector;
+import taffer.statcounter.Model.ShakeDetector;
 
-public class GameActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class GameActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
     private DrawerLayout drawer;
     private Game game;
     private int players;
     private Game1Fragment fGame; // TODO: MAKE A GAMEFRAGMENT INTERFACE
+    private Detector shakeDetector;
+    private Detector orientationDetector;
+    private SensorManager sMan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,10 +80,17 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
         }else{
             // TODO: 2 players
         }
-
+        registerSensors();
 
     }
 
+
+    private void registerSensors(){
+        this.sMan = (SensorManager) this.getSystemService(SENSOR_SERVICE);
+        this.sMan.registerListener(this, sMan.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+        this.shakeDetector = new ShakeDetector();
+        this.orientationDetector = new OrientationDetector(OrientationDetector.UPSIDEDOWN, 1);
+    }
     public void changeHP(View v){
 
         if(game.noOfPlayers() == 1){
@@ -119,5 +136,22 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
         } else {
             drawer.openDrawer(GravityCompat.START);
         }
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        Log.e("EVENT", sensorEvent.toString());
+        if(orientationDetector.detectEvent(sensorEvent) == Detector.SUCCESS){
+            Log.e("FLIPPED", "FLIPPIN FLIP!");
+            // TODO: Flip coin!
+        }else if(shakeDetector.detectEvent(sensorEvent) == Detector.SUCCESS){
+            // TODO: Throw dice!
+            Log.e("SHAKE", "IT BABY!");
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+        // hush....
     }
 }
