@@ -24,6 +24,8 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import taffer.statcounter.Fragments.Game1Fragment;
+import taffer.statcounter.Fragments.Game2Fragment;
+import taffer.statcounter.Fragments.StatCounter;
 import taffer.statcounter.Model.Detector;
 import taffer.statcounter.Model.Game;
 import taffer.statcounter.Model.OrientationDetector;
@@ -33,7 +35,7 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private Game game;
     private int players;
-    private Game1Fragment fGame; // TODO: MAKE A GAMEFRAGMENT INTERFACE
+    private StatCounter fGame;
     private Detector shakeDetector;
     private Detector orientationDetector;
     private SensorManager sMan;
@@ -79,6 +81,17 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
 
         }else{
             // TODO: 2 players
+            FrameLayout layout = findViewById(R.id.game_container);
+            layout.setBackgroundColor(this.game.getPlayerColor(1));
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            Game2Fragment f = new Game2Fragment();
+            this.fGame = f;
+            Bundle b = new Bundle();
+            b.putString("HP",this.game.getPlayerHealth(1) + "");
+            b.putString("NAME",this.game.getPlayerName(1) + "");
+            b.putInt("COLOR",this.game.getPlayerColor(1));
+            f.setArguments(b);
+            ft.replace(R.id.game_container,f).commit();
         }
         registerSensors();
 
@@ -115,7 +128,7 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             // TODO: Two players
         }
 
-        this.fGame.setHP(this.game.getPlayerHealth(1));
+        this.fGame.setHP(1, this.game.getPlayerHealth(1));
     }
 
     @Override

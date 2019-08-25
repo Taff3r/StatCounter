@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorGamemode">
@@ -8,40 +9,50 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabNext"
-        android:layout_width="84dp"
-        android:layout_height="76dp"
+        android:layout_width="56dp"
+        android:layout_height="64dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="34dp"
-        android:layout_marginBottom="38dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
         android:background="@color/colorAccent"
         android:clickable="true"
         android:onClick="nextStage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_next" />
 
     <ImageView
-        android:layout_centerHorizontal="true"
         android:id="@+id/ivDice"
         android:layout_width="133dp"
-        android:layout_height="151dp"
+        android:layout_height="0dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="118dp"
-        android:layout_marginBottom="402dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="113dp"
+        android:layout_marginBottom="85dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_dices" />
 
     <TextView
         android:id="@+id/tvPick"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="119dp"
-        android:layout_marginBottom="361dp"
+        android:layout_centerHorizontal="true"
         android:text="@string/pickGameMode"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.441" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -49,7 +60,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="287dp"
-        android:entries="@array/gameModes"/>
-</RelativeLayout>
+        android:layout_marginBottom="286dp"
+        android:entries="@array/gameModes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivDice" />
+</android.support.constraint.ConstraintLayout>

@@ -27,6 +27,8 @@ public class BuilderActivity extends AppCompatActivity {
     private int step = 0;
     private Toast toast;
 
+    // TODO: Make all layouts Constraint
+    // TODO: Make all Activities replace instead of stack.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

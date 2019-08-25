@@ -12,17 +12,14 @@ import android.widget.TextView;
 
 import taffer.statcounter.R;
 
-public class Game1Fragment extends Fragment implements StatCounter{
+public class Game2Fragment extends Fragment implements StatCounter {
     private String defaultHp;
     private String playerName;
     private int color;
     private View v;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        this.v = inflater.inflate(R.layout.fragment_game1, container, false);
-        ((TextView)v.findViewById(R.id.tvHP)).setText(this.defaultHp);
-        ((TextView)v.findViewById(R.id.tvHP)).setTextColor(this.color);
-        ((TextView)v.findViewById(R.id.tvName)).setText(this.playerName); // TODO: One player doesnt need name?
+        this.v = inflater.inflate(R.layout.fragment_game2, container, false);
         v.findViewById(R.id.tvHP).setZ(4);
         return v;
     }
@@ -31,28 +28,25 @@ public class Game1Fragment extends Fragment implements StatCounter{
     @Override
     public void setArguments(@Nullable Bundle args) {
         super.setArguments(args);
-        this.playerName = args.getString("NAME");
-        this.defaultHp = args.getString("HP");
-        this.color = args.getInt("COLOR");
     }
 
     public void setHP(int player, int hp){
         ((TextView) v.findViewById(R.id.tvHP)).setText(hp + "");
     }
 
+
     public void setDieValue(int i){
         this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
         ((TextView) this.v.findViewById(R.id.tvDieValue)).setText(i + "");
-        ((TextView) this.v.findViewById(R.id.tvDieValue)).setTextColor(Color.WHITE);
     }
 
     public void setCoinValue(boolean res){
         this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
         this.v.findViewById(R.id.tvDieValue).setZ(4);
         if(res){
-            ((TextView) this.v.findViewById(R.id.tvDieValue)).setText("TAILS");
+            ((TextView) this.v.findViewById(R.id.tvDieValue)).setText("T");
         }else{
-            ((TextView) this.v.findViewById(R.id.tvDieValue)).setText("HEADS");
+            ((TextView) this.v.findViewById(R.id.tvDieValue)).setText("H");
         }
     }
 }
