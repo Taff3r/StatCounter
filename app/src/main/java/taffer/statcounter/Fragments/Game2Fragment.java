@@ -15,12 +15,13 @@ import taffer.statcounter.R;
 public class Game2Fragment extends Fragment implements StatCounter {
     private String defaultHp;
     private String playerName;
-    private int color;
+    private int p1Color;
+    private int p2Color;
     private View v;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.v = inflater.inflate(R.layout.fragment_game2, container, false);
-        v.findViewById(R.id.tvHP).setZ(4);
+        this.setViews();
         return v;
     }
 
@@ -28,8 +29,19 @@ public class Game2Fragment extends Fragment implements StatCounter {
     @Override
     public void setArguments(@Nullable Bundle args) {
         super.setArguments(args);
+        this.p1Color = args.getInt("P1COLOR");
+        this.p2Color = args.getInt("P2COLOR");
+        this.defaultHp = args.getString("HP");
     }
 
+    private void setViews(){
+        this.v.findViewById(R.id.tvHP1).setZ(4);
+        this.v.findViewById(R.id.tvHP2).setZ(4);
+        ((TextView) this.v.findViewById(R.id.tvHP1)).setTextColor(this.p1Color);
+        ((TextView) this.v.findViewById(R.id.tvHP2)).setTextColor(this.p2Color);
+        this.v.findViewById(R.id.clPlayer1).setBackgroundColor(this.p1Color);
+        this.v.findViewById(R.id.clPlayer2).setBackgroundColor(this.p2Color);
+    }
     public void setHP(int player, int hp){
         ((TextView) v.findViewById(R.id.tvHP)).setText(hp + "");
     }

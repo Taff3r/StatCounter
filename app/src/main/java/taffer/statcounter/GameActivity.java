@@ -1,5 +1,6 @@
 package taffer.statcounter;
 
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -52,7 +53,11 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             Log.e("SHIT", "FUCKY WUCKY");
         }
         Toolbar toolbar = findViewById(R.id.bar);
-        toolbar.setBackgroundColor(this.game.getPlayerColor(1));
+        if(this.players == 1){
+            toolbar.setBackgroundColor(this.game.getPlayerColor(1));
+        }else{
+            toolbar.setBackgroundColor(this.game.getPlayerColor(2));
+        }
         toolbar.setTitle("");
         //((LinearLayout) findViewById(R.id.nav_view).getLa).setBackgroundColor(this.game.getPlayerColor(1)); // TODO: Maybe change color of nav_header
         setSupportActionBar(toolbar);
@@ -82,14 +87,16 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
         }else{
             // TODO: 2 players
             FrameLayout layout = findViewById(R.id.game_container);
-            layout.setBackgroundColor(this.game.getPlayerColor(1));
+            layout.setBackgroundColor(Color.BLACK);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             Game2Fragment f = new Game2Fragment();
             this.fGame = f;
             Bundle b = new Bundle();
             b.putString("HP",this.game.getPlayerHealth(1) + "");
-            b.putString("NAME",this.game.getPlayerName(1) + "");
-            b.putInt("COLOR",this.game.getPlayerColor(1));
+            b.putString("P1NAME",this.game.getPlayerName(1) + "");
+            b.putString("P2NAME",this.game.getPlayerName(2) + "");
+            b.putInt("P1COLOR",this.game.getPlayerColor(1));
+            b.putInt("P2COLOR",this.game.getPlayerColor(2));
             f.setArguments(b);
             ft.replace(R.id.game_container,f).commit();
         }
