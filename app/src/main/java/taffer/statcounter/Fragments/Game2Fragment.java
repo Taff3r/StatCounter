@@ -39,9 +39,12 @@ public class Game2Fragment extends Fragment implements StatCounter {
         this.v.findViewById(R.id.tvHP2).setZ(4);
         ((TextView) this.v.findViewById(R.id.tvHP1)).setTextColor(this.p1Color);
         ((TextView) this.v.findViewById(R.id.tvHP2)).setTextColor(this.p2Color);
+        ((TextView) this.v.findViewById(R.id.tvHP1)).setText(this.defaultHp);
+        ((TextView) this.v.findViewById(R.id.tvHP2)).setText(this.defaultHp);
         this.v.findViewById(R.id.clPlayer1).setBackgroundColor(this.p1Color);
         this.v.findViewById(R.id.clPlayer2).setBackgroundColor(this.p2Color);
     }
+
     public void setHP(int player, int hp){
         ((TextView) v.findViewById(R.id.tvHP)).setText(hp + "");
     }
