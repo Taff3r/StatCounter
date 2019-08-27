@@ -61,4 +61,10 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("GAME", g);
         startActivity(i);
     }
+
+    public void settings(View v){
+        Intent i = new Intent(this, SettingsActivity.class);
+        startActivity(i);
+        this.finish();
+    }
 }
