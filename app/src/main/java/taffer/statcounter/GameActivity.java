@@ -1,5 +1,8 @@
 package taffer.statcounter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -31,6 +34,7 @@ import taffer.statcounter.Fragments.Game2Fragment;
 import taffer.statcounter.Fragments.StatCounter;
 import taffer.statcounter.Model.Detector;
 import taffer.statcounter.Model.Game;
+import taffer.statcounter.Model.GameBuilder;
 import taffer.statcounter.Model.OrientationDetector;
 import taffer.statcounter.Model.ShakeDetector;
 
@@ -172,16 +176,41 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
                 this.resetGame();
                 break;
             case R.id.nav_newGame:
-                // TODO
+                Intent i = new Intent(this, BuilderActivity.class);
+                startActivity(i);
+                this.finish();
                 break;
+
             case R.id.nav_quick:
-                // TODO
+                SharedPreferences sp = getApplicationContext().getSharedPreferences(getString(R.string.prefKey), Context.MODE_PRIVATE);
+                int p1Color = sp.getInt("def_p1Color", Color.WHITE);
+                String mode = sp.getString("def_mode", "Constructed");
+                String p1Name = sp.getString("def_p1Name", "");
+
+                Game g = new GameBuilder().setNoOfPlayers(1).setGameMode(mode).addPlayer(p1Name, p1Color).build();
+                Intent intent = new Intent(this, GameActivity.class);
+                intent.putExtra("GAME", g);
+                startActivity(intent);
+                this.finish();
                 break;
             case R.id.nav_quick2:
-                // TODO
+                SharedPreferences sp2 = getApplicationContext().getSharedPreferences(getString(R.string.prefKey), Context.MODE_PRIVATE);
+                int p1Col = sp2.getInt("def_p1Color", Color.WHITE);
+                int p2Col = sp2.getInt("def_p2Color", Color.GRAY);
+                String m = sp2.getString("def_mode", "Constructed");
+                String p1N = sp2.getString("def_p1Name", "");
+                String p2N = sp2.getString("def_p2Name", "");
+
+                Game game = new GameBuilder().setNoOfPlayers(2).setGameMode(m).addPlayer(p1N, p1Col).addPlayer(p2N, p2Col).build();
+                Intent init = new Intent(this, GameActivity.class);
+                init.putExtra("GAME", game);
+                startActivity(init);
+                this.finish();
                 break;
             case R.id.nav_settings:
-                // TODO
+                Intent settings = new Intent(this, SettingsActivity.class);
+                startActivity(settings);
+                this.finish();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
