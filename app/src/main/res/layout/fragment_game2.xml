@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tvDie"
+        android:id="@+id/tvDieValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="9dp"
@@ -22,48 +22,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvDie"
+        app:layout_constraintBottom_toTopOf="@+id/tvDieValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="8dp"
-            android:clickable="true"
-            android:rotation="180"
-            app:layout_constraintBottom_toBottomOf="@+id/ivHP2"
-            app:layout_constraintStart_toEndOf="@+id/ivHP2"
-            app:srcCompat="@drawable/ic_plus_one" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:clickable="true"
-            android:rotation="180"
-            app:layout_constraintBottom_toBottomOf="@+id/ivHP2"
-            app:layout_constraintEnd_toStartOf="@+id/ivHP2"
-            app:srcCompat="@drawable/ic_one" />
-
-        <TextView
-            android:id="@+id/tvHP2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="60dp"
-            android:rotation="180"
-            android:text="@string/title"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/ivHP2"
@@ -76,6 +38,85 @@
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_heart" />
+
+        <TextView
+            android:id="@+id/tvHP2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
+            android:gravity="center"
+            android:rotation="180"
+            android:text="@string/title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:rotation="180"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.14" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabMinus1P2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:onClick="changeHP"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="@+id/ivHP2"
+            app:layout_constraintEnd_toStartOf="@+id/ivHP2"
+            app:srcCompat="@drawable/ic_one" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabPlus1P2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:onClick="changeHP"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="@+id/ivHP2"
+            app:layout_constraintStart_toEndOf="@+id/ivHP2"
+            app:srcCompat="@drawable/ic_plus_one" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabPlus5P2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:clickable="true"
+            android:onClick="changeHP"
+            android:rotation="180"
+            app:layout_constraintBottom_toTopOf="@+id/fabPlus1P2"
+            app:layout_constraintStart_toStartOf="@+id/fabPlus1P2"
+            app:srcCompat="@drawable/ic_generated" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabMinus5P2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="132dp"
+            android:layout_marginBottom="13dp"
+            android:clickable="true"
+            android:onClick="changeHP"
+            android:rotation="180"
+            app:layout_constraintBottom_toTopOf="@+id/fabMinus1P2"
+            app:layout_constraintEnd_toStartOf="@+id/fabPlus5P2"
+            app:srcCompat="@drawable/ic_generated" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -86,20 +127,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDie">
-
-        <TextView
-            android:id="@+id/tvHP1"
-            android:layout_width="86dp"
-            android:layout_height="17dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="60dp"
-            android:text="@string/title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDieValue">
 
         <ImageView
             android:id="@+id/ivHP1"
@@ -112,27 +140,79 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_heart" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
+        <TextView
+            android:id="@+id/tvHP1"
+            android:layout_width="86dp"
+            android:layout_height="17dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="60dp"
+            android:gravity="center"
+            android:text="@string/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvName1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:clickable="true"
-            app:layout_constraintStart_toEndOf="@+id/ivHP1"
-            app:layout_constraintTop_toTopOf="@+id/ivHP1"
-            app:srcCompat="@drawable/ic_plus_one" />
+            android:gravity="center"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.876" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton4"
+            android:id="@+id/fabMinus1P1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp"
             android:clickable="true"
+            android:onClick="changeHP"
             app:layout_constraintEnd_toStartOf="@+id/ivHP1"
             app:layout_constraintTop_toTopOf="@+id/ivHP1"
             app:srcCompat="@drawable/ic_one" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabPlus1P1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:onClick="changeHP"
+            app:layout_constraintStart_toEndOf="@+id/ivHP1"
+            app:layout_constraintTop_toTopOf="@+id/ivHP1"
+            app:srcCompat="@drawable/ic_plus_one" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabMinus5P1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="2dp"
+            android:clickable="true"
+            android:onClick="changeHP"
+            app:layout_constraintEnd_toEndOf="@+id/fabMinus1P1"
+            app:layout_constraintTop_toBottomOf="@+id/fabMinus1P1"
+            app:srcCompat="@drawable/ic_generated" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabPlus5P1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:clickable="true"
+            android:onClick="changeHP"
+            app:layout_constraintStart_toStartOf="@+id/fabPlus1P1"
+            app:layout_constraintTop_toBottomOf="@+id/fabPlus1P1"
+            app:srcCompat="@drawable/ic_generated" />
+
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

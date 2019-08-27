@@ -5,6 +5,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -32,7 +34,7 @@ import taffer.statcounter.Model.Game;
 import taffer.statcounter.Model.OrientationDetector;
 import taffer.statcounter.Model.ShakeDetector;
 
-public class GameActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
+public class GameActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, DrawerLayout.DrawerListener {
     private DrawerLayout drawer;
     private Game game;
     private int players;
@@ -40,6 +42,8 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
     private Detector shakeDetector;
     private Detector orientationDetector;
     private SensorManager sMan;
+    private MediaPlayer mp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +69,7 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        drawer.addDrawerListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -85,7 +89,6 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             ft.replace(R.id.game_container,f).commit();
 
         }else{
-            // TODO: 2 players
             FrameLayout layout = findViewById(R.id.game_container);
             layout.setBackgroundColor(Color.BLACK);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -101,9 +104,7 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             ft.replace(R.id.game_container,f).commit();
         }
         registerSensors();
-
     }
-
 
     private void registerSensors(){
         this.sMan = (SensorManager) this.getSystemService(SENSOR_SERVICE);
@@ -111,8 +112,6 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
         this.shakeDetector = new ShakeDetector();
         this.orientationDetector = new OrientationDetector(OrientationDetector.UPSIDEDOWN, 1);
     }
-
-
 
     public void changeHP(View v){
         if(game.noOfPlayers() == 1){
@@ -126,22 +125,48 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
                 case R.id.fabPlus1:
                     this.game.addPoints(1, 1);
                     break;
-
                     case R.id.fabPlus5:
+                        this.game.addPoints(1, 5);
+                        break;
+
+            }
+            this.fGame.setHP(1, this.game.getPlayerHealth(1));
+        }else{
+            switch (v.getId()) {
+                case R.id.fabMinus1P1:
+                    this.game.addPoints(1, -1);
+                    break;
+                case R.id.fabMinus5P1:
+                    this.game.addPoints(1, -5);
+                    break;
+                case R.id.fabPlus1P1:
+                    this.game.addPoints(1, 1);
+                    break;
+                case R.id.fabPlus5P1:
                     this.game.addPoints(1, 5);
                     break;
+                case R.id.fabPlus5P2:
+                    this.game.addPoints(2, 5);
+                    break;
+                case R.id.fabPlus1P2:
+                    this.game.addPoints(2, 1);
+                    break;
+                case R.id.fabMinus1P2:
+                    this.game.addPoints(2, -1);
+                    break;
+                case R.id.fabMinus5P2:
+                    this.game.addPoints(2, -5);
+                    break;
             }
-        }else{
-            // TODO: Two players
+            this.fGame.setHP(1, this.game.getPlayerHealth(1));
+            this.fGame.setHP(2, this.game.getPlayerHealth(2));
         }
-
-        this.fGame.setHP(1, this.game.getPlayerHealth(1));
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // TODO: CHANGE TOOLTIP TO A RANDOM
-        ((TextView) findViewById(R.id.toolTip)).setText(getResources().getStringArray(R.array.toolTips)[0]);
+
         ActionBar actionBar = getSupportActionBar();
         switch (item.getItemId()) {
             // INSERT ITEMS HERE
@@ -162,21 +187,67 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        Log.e("EVENT", sensorEvent.toString());
         if(orientationDetector.detectEvent(sensorEvent) == Detector.SUCCESS){
-            Log.e("FLIPPED", "FLIPPIN FLIP!");
-            // TODO: Flip coin!
             boolean res = this.game.flipCoin();
             this.fGame.setCoinValue(res);
+            this.playCoinSound();
         }else if(shakeDetector.detectEvent(sensorEvent) == Detector.SUCCESS){
-            // TODO: Throw dice!
             int res = this.game.rollDie();
             this.fGame.setDieValue(res);
+            this.playDiceSound();
+        }
+    }
+
+    private void playDiceSound(){
+        if(this.mp == null){
+            this.mp = MediaPlayer.create(this, R.raw.dice);
+            mp.start();
+        }else{
+            this.mp.stop();
+            this.mp = MediaPlayer.create(this, R.raw.dice);
+            mp.start();
+        }
+    }
+    private void playCoinSound(){
+        if(this.mp == null){
+            this.mp = MediaPlayer.create(this, R.raw.coin);
+            mp.start();
+        }else{
+            this.mp.stop();
+            this.mp = MediaPlayer.create(this, R.raw.coin);
+            mp.start();
+        }
+    }
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+        // hush....
+    }
+
+
+    @Override
+    public void onDrawerSlide(@NonNull View view, float v) {
+        // Do nothing
+    }
+
+    @Override
+    public void onDrawerOpened(@NonNull View view) {
+        String[] tooltips = getResources().getStringArray(R.array.toolTips);
+        TextView tv = findViewById(R.id.toolTip);
+
+        if(tv.getText().toString().equals(tooltips[0])){
+            tv.setText(tooltips[1]);
+        }else{
+            tv.setText(tooltips[0]);
         }
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-        // hush....
+    public void onDrawerClosed(@NonNull View view) {
+        // Do nothing
+    }
+
+    @Override
+    public void onDrawerStateChanged(int i) {
+        // Do nothing
     }
 }

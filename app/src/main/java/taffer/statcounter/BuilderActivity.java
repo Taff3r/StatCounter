@@ -27,14 +27,12 @@ public class BuilderActivity extends AppCompatActivity {
     private int step = 0;
     private Toast toast;
 
-    // TODO: Make all layouts Constraint
     // TODO: Make all Activities replace instead of stack.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_build);
         Toolbar toolbar = findViewById(R.id.bar);
-        Log.e("TOOLBAR", toolbar.toString());
         setSupportActionBar(toolbar);
         if(savedInstanceState != null){
             this.gb = (GameBuilder) savedInstanceState.get("BUILDER");
@@ -77,8 +75,7 @@ public class BuilderActivity extends AppCompatActivity {
                 this.step += this.addPlayer();
                 break;
             case 3:
-                this.addPlayer();
-                this.step++;
+                this.step += this.addPlayer();
                 break;
             case 4:
                 this.step += this.confirm();
@@ -131,10 +128,12 @@ public class BuilderActivity extends AppCompatActivity {
         }else{
             name = et.getText().toString();
         }
+
         if(selected.getVisibility() == View.INVISIBLE){
             displayToast("Please pick a color");
             return 0;
         }
+
         if(this.gb.getNoOfPlayers() == 2){
             this.gb.addPlayer(name, selected.getImageTintList().getDefaultColor());
             return 1;
@@ -142,6 +141,7 @@ public class BuilderActivity extends AppCompatActivity {
             this.gb.addPlayer(name, selected.getImageTintList().getDefaultColor());
             return 2;
         }
+
     }
 
     private void changeStep(){
