@@ -7,11 +7,23 @@ import java.util.Map;
 public class Game implements Serializable {
     private Map<Integer, Player> players;
     private RandomHelper rand = new RandomHelper();
+    private int defaultHP;
 
-    public Game(Map<Integer, Player> players){
+    public Game(int defaultHP, Map<Integer, Player> players){
         this.players = players;
+        this.defaultHP = defaultHP;
     }
 
+    public int defaultHP(){
+        return defaultHP;
+    }
+
+    public void resetGame(){
+        for(Map.Entry<Integer, Player> e : players.entrySet()){
+            Player p = e.getValue();
+            p.addPoints(this.defaultHP - p.health());
+        }
+    }
     public void addPoints(int playerNumber, int points){
         this.players.get(playerNumber).addPoints(points);
     }
@@ -35,6 +47,8 @@ public class Game implements Serializable {
     public String getPlayerName(int i){
         return players.get(i).name();
     }
+
+
     /**
      * TODO: D20 or D6 ?
      * @return

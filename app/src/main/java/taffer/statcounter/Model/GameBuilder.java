@@ -30,7 +30,7 @@ public class GameBuilder implements Serializable {
     }
 
     public Game build(){
-        return new Game(players);
+        return new Game(this.getLifePointsFromGameMode(), players);
     }
 
     private int getLifePointsFromGameMode(){

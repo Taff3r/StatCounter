@@ -74,6 +74,11 @@ public class Game2Fragment extends Fragment implements StatCounter {
         }
     }
 
+    @Override
+    public void resetGame() {
+        this.setViews();
+    }
+
     public void playDiceSound() {
         // TODO: Play sound
     }

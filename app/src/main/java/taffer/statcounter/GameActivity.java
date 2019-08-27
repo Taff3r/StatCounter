@@ -54,9 +54,10 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             this.game = (Game) b.get("GAME");
         } catch(Exception e){
             // Ignore Exception
-            Log.e("SHIT", "FUCKY WUCKY");
+            Log.e("THIS ", "SHOULDN'T HAPPEN");
         }
         Toolbar toolbar = findViewById(R.id.bar);
+        this.players = this.game.noOfPlayers();
         if(this.players == 1){
             toolbar.setBackgroundColor(this.game.getPlayerColor(1));
         }else{
@@ -65,7 +66,7 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle("");
         //((LinearLayout) findViewById(R.id.nav_view).getLa).setBackgroundColor(this.game.getPlayerColor(1)); // TODO: Maybe change color of nav_header
         setSupportActionBar(toolbar);
-        this.players = this.game.noOfPlayers();
+
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -165,15 +166,34 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // TODO: CHANGE TOOLTIP TO A RANDOM
-
         ActionBar actionBar = getSupportActionBar();
         switch (item.getItemId()) {
-            // INSERT ITEMS HERE
+            case R.id.nav_reset:
+                this.resetGame();
+                break;
+            case R.id.nav_newGame:
+                // TODO
+                break;
+            case R.id.nav_quick:
+                // TODO
+                break;
+            case R.id.nav_quick2:
+                // TODO
+                break;
+            case R.id.nav_settings:
+                // TODO
+                break;
         }
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void resetGame(){
+        this.game.resetGame();
+        if(this.players == 2){
+            this.fGame.setHP(2, this.game.defaultHP());
+        }
+        this.fGame.setHP(1, this.game.defaultHP());
     }
 
    @Override
@@ -208,6 +228,7 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             mp.start();
         }
     }
+
     private void playCoinSound(){
         if(this.mp == null){
             this.mp = MediaPlayer.create(this, R.raw.coin);
@@ -218,6 +239,7 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             mp.start();
         }
     }
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
         // hush....

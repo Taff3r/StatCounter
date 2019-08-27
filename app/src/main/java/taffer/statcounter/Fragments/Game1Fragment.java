@@ -20,13 +20,16 @@ public class Game1Fragment extends Fragment implements StatCounter{
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.v = inflater.inflate(R.layout.fragment_game1, container, false);
+        this.setViews();
+        return v;
+    }
+
+    private void setViews(){
         ((TextView)v.findViewById(R.id.tvHP)).setText(this.defaultHp);
         ((TextView)v.findViewById(R.id.tvHP)).setTextColor(this.color);
         ((TextView)v.findViewById(R.id.tvName)).setText(this.playerName); // TODO: One player doesnt need name?
         v.findViewById(R.id.tvHP).setZ(4);
-        return v;
     }
-
 
     @Override
     public void setArguments(@Nullable Bundle args) {
@@ -54,5 +57,10 @@ public class Game1Fragment extends Fragment implements StatCounter{
         }else{
             ((TextView) this.v.findViewById(R.id.tvDieValue)).setText("HEADS");
         }
+    }
+
+    @Override
+    public void resetGame() {
+        this.setViews();
     }
 }
