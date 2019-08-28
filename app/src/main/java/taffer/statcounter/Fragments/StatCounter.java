@@ -1,7 +1,7 @@
 package taffer.statcounter.Fragments;
 
 /**
- * Interface for all StatCounter activities/Fragements.
+ * Interface for all StatCounter activities/Fragments.
  */
 public interface StatCounter {
 

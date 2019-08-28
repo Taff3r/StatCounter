@@ -56,13 +56,24 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        // TODO: Save instance.
-        try{
-            Bundle b = getIntent().getExtras();
-            this.game = (Game) b.get("GAME");
-        } catch(Exception e){
-            // Shouldn't happen
+        if(savedInstanceState != null){
+            this.game = (Game) savedInstanceState.get("GAME");
+            this.setViews(false); // Ugly. Has to refresh-
+        }else{
+            try{
+                Bundle b = getIntent().getExtras();
+                this.game = (Game) b.get("GAME");
+
+            } catch(Exception e){
+                // Shouldn't happen
+            }
+            setViews(true);
         }
+
+        registerSensors();
+    }
+
+    private void setViews(boolean putHP){
         Toolbar toolbar = findViewById(R.id.bar);
         this.players = this.game.noOfPlayers();
         if(this.players == 1){
@@ -89,7 +100,9 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             Game1Fragment f = new Game1Fragment();
             this.fGame = f;
             Bundle b = new Bundle();
-            b.putString("HP",this.game.getPlayerHealth(1) + "");
+            if(putHP){
+                b.putString("HP1",this.game.getPlayerHealth(1) + "");
+            }
             b.putString("NAME",this.game.getPlayerName(1) + "");
             b.putInt("COLOR",this.game.getPlayerColor(1));
             f.setArguments(b);
@@ -102,7 +115,10 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             Game2Fragment f = new Game2Fragment();
             this.fGame = f;
             Bundle b = new Bundle();
-            b.putString("HP",this.game.getPlayerHealth(1) + "");
+            if(putHP){
+                b.putString("HP1",this.game.getPlayerHealth(1) + "");
+                b.putString("HP2",this.game.getPlayerHealth(1) + "");
+            }
             b.putString("P1NAME",this.game.getPlayerName(1) + "");
             b.putString("P2NAME",this.game.getPlayerName(2) + "");
             b.putInt("P1COLOR",this.game.getPlayerColor(1));
@@ -110,74 +126,100 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             f.setArguments(b);
             ft.replace(R.id.game_container,f).commit();
         }
-        registerSensors();
+    }
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable("GAME", this.game);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterSensors();
+
+    }
+
+    private void unregisterSensors(){
+        this.sMan = null;
+        if (this.mp != null) {
+            this.mp.pause();
+            if (isFinishing()) {
+                this.mp.stop();
+                this.mp.release();
+            }
+        }
     }
 
     private void registerSensors(){
         this.sMan = (SensorManager) this.getSystemService(SENSOR_SERVICE);
         this.sMan.registerListener(this, sMan.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
         this.shakeDetector = new ShakeDetector();
-        this.orientationDetector = new OrientationDetector(OrientationDetector.UPSIDEDOWN, 1);
+        this.orientationDetector = new OrientationDetector(OrientationDetector.UPSIDEDOWN, 2);
     }
 
     public void changePoison(View v){
-        switch (v.getId()){
-            case R.id.fabMinusPoison:
-                this.game.addPoisonCounters(1, -1);
-                break;
-            case R.id.fabPlusPoison:
-                this.game.addPoisonCounters(1, 1);
-                break;
+        if(v != null){
+            switch (v.getId()){
+                case R.id.fabMinusPoison:
+                    this.game.addPoisonCounters(1, -1);
+                    break;
+                case R.id.fabPlusPoison:
+                    this.game.addPoisonCounters(1, 1);
+                    break;
+            }
         }
         this.fGame.setPoison(1, this.game.getPlayerPoison(1));
     }
     public void changeHP(View v){
-        if(game.noOfPlayers() == 1){
-            switch (v.getId()){
-                case R.id.fabMinus1:
-                    this.game.addPoints(1, -1);
-                    break;
-                case R.id.fabMinus5:
-                    this.game.addPoints(1, -5);
-                    break;
-                case R.id.fabPlus1:
-                    this.game.addPoints(1, 1);
-                    break;
+        if(v != null){
+            if(game.noOfPlayers() == 1){
+                switch (v.getId()){
+                    case R.id.fabMinus1:
+                        this.game.addPoints(1, -1);
+                        break;
+                    case R.id.fabMinus5:
+                        this.game.addPoints(1, -5);
+                        break;
+                    case R.id.fabPlus1:
+                        this.game.addPoints(1, 1);
+                        break;
                     case R.id.fabPlus5:
                         this.game.addPoints(1, 5);
                         break;
 
-            }
+                }
+            }else{
+                switch (v.getId()) {
+                    case R.id.fabMinus1P1:
+                        this.game.addPoints(1, -1);
+                        break;
+                    case R.id.fabMinus5P1:
+                        this.game.addPoints(1, -5);
+                        break;
+                    case R.id.fabPlus1P1:
+                        this.game.addPoints(1, 1);
+                        break;
+                    case R.id.fabPlus5P1:
+                        this.game.addPoints(1, 5);
+                        break;
+                    case R.id.fabPlus5P2:
+                        this.game.addPoints(2, 5);
+                        break;
+                    case R.id.fabPlus1P2:
+                        this.game.addPoints(2, 1);
+                        break;
+                    case R.id.fabMinus1P2:
+                        this.game.addPoints(2, -1);
+                        break;
+                    case R.id.fabMinus5P2:
+                        this.game.addPoints(2, -5);
+                        break;
+                }
+                this.fGame.setHP(2, this.game.getPlayerHealth(2));
+        }
             this.fGame.setHP(1, this.game.getPlayerHealth(1));
-        }else{
-            switch (v.getId()) {
-                case R.id.fabMinus1P1:
-                    this.game.addPoints(1, -1);
-                    break;
-                case R.id.fabMinus5P1:
-                    this.game.addPoints(1, -5);
-                    break;
-                case R.id.fabPlus1P1:
-                    this.game.addPoints(1, 1);
-                    break;
-                case R.id.fabPlus5P1:
-                    this.game.addPoints(1, 5);
-                    break;
-                case R.id.fabPlus5P2:
-                    this.game.addPoints(2, 5);
-                    break;
-                case R.id.fabPlus1P2:
-                    this.game.addPoints(2, 1);
-                    break;
-                case R.id.fabMinus1P2:
-                    this.game.addPoints(2, -1);
-                    break;
-                case R.id.fabMinus5P2:
-                    this.game.addPoints(2, -5);
-                    break;
-            }
-            this.fGame.setHP(1, this.game.getPlayerHealth(1));
-            this.fGame.setHP(2, this.game.getPlayerHealth(2));
+
         }
     }
 
@@ -249,14 +291,16 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        if(orientationDetector.detectEvent(sensorEvent) == Detector.SUCCESS){
-            boolean res = this.game.flipCoin();
-            this.fGame.setCoinValue(res);
-            this.playCoinSound();
-        }else if(shakeDetector.detectEvent(sensorEvent) == Detector.SUCCESS){
-            int res = this.game.rollDie();
-            this.fGame.setDieValue(res);
-            this.playDiceSound();
+        if(this.sMan != null){
+            if(orientationDetector.detectEvent(sensorEvent) == Detector.SUCCESS){
+                boolean res = this.game.flipCoin();
+                this.fGame.setCoinValue(res);
+                this.playCoinSound();
+            }else if(shakeDetector.detectEvent(sensorEvent) == Detector.SUCCESS){
+                int res = this.game.rollDie();
+                this.fGame.setDieValue(res);
+                this.playDiceSound();
+            }
         }
     }
 
