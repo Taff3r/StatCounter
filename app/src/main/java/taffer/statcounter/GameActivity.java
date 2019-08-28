@@ -53,6 +53,7 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        // TODO: Save instance.
         try{
             Bundle b = getIntent().getExtras();
             this.game = (Game) b.get("GAME");
