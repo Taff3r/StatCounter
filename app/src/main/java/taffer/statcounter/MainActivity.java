@@ -47,11 +47,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Creates a new custom game.
+     * @param v
+     */
     public void newGame(View v){
         Intent i = new Intent(this, BuilderActivity.class);
         startActivity(i);
+        this.finish();
     }
 
+    /**
+     * Creates a new quick game.
+     * @param v
+     */
     public void quickGame(View v){
         SharedPreferences sp = getApplicationContext().getSharedPreferences(getString(R.string.prefKey), Context.MODE_PRIVATE);
         int p1Color = sp.getInt("def_p1Color", Color.WHITE);
@@ -65,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
         this.finish();
     }
 
+    /**
+     * Creates a new quick 2 player game.
+     * @param v
+     */
     public void quick2PlayerGame(View v){
         SharedPreferences sp = getApplicationContext().getSharedPreferences(getString(R.string.prefKey), Context.MODE_PRIVATE);
         int p1Color = sp.getInt("def_p1Color", Color.WHITE);
@@ -79,7 +92,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
         this.finish();
     }
-
+    /**
+     * Opens settings screen.
+     * @param v
+     */
     public void settings(View v){
         Intent i = new Intent(this, SettingsActivity.class);
         startActivity(i);

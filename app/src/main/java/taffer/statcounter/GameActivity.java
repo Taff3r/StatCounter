@@ -158,6 +158,10 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
         this.orientationDetector = new OrientationDetector(OrientationDetector.UPSIDEDOWN, 2);
     }
 
+    /**
+     * Changes the Poison of the Player.
+     * @param v, The button clicked.
+     */
     public void changePoison(View v){
         if(v != null){
             switch (v.getId()){
@@ -171,6 +175,11 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
         }
         this.fGame.setPoison(1, this.game.getPlayerPoison(1));
     }
+
+    /**
+     * Changes the HP for the Player.
+     * @param v, the button clicked.
+     */
     public void changeHP(View v){
         if(v != null){
             if(game.noOfPlayers() == 1){

@@ -19,7 +19,6 @@ public class SettingsActivity extends AppCompatActivity {
     private int p2Color;
     private Toast toast;
 
-    // TODO: Save state!
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
