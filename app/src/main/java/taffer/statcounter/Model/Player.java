@@ -2,6 +2,9 @@ package taffer.statcounter.Model;
 
 import java.io.Serializable;
 
+/**
+ * Player class.
+ */
 public class Player implements Serializable {
     private int color;
     private String name;

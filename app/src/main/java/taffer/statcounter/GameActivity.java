@@ -38,6 +38,9 @@ import taffer.statcounter.Model.GameBuilder;
 import taffer.statcounter.Model.OrientationDetector;
 import taffer.statcounter.Model.ShakeDetector;
 
+/**
+ * Activity for playing the Game.
+ */
 public class GameActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, DrawerLayout.DrawerListener {
     private DrawerLayout drawer;
     private Game game;

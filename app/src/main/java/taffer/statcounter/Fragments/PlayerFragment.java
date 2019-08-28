@@ -10,7 +10,17 @@ import android.view.ViewGroup;
 
 import taffer.statcounter.R;
 
+/**
+ * Fragment for choosing the amount of Players.
+ */
 public class PlayerFragment extends Fragment {
+    /**
+     * Creates the View
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return View, the view.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

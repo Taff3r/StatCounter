@@ -28,16 +28,28 @@ public class SettingsActivity extends AppCompatActivity {
         this.editor = sp.edit();
     }
 
+    /**
+     * onClick method, selects the color player 1
+     * @param v
+     */
     public void setP1Color(View v){
         this.p1Color = ((ImageView) v).getImageTintList().getDefaultColor();
         displayToast("Player 1 color selected");
     }
 
+    /**
+     * onClick method, selects the color player 2
+     * @param v
+     */
     public void setP2Color(View v){
         this.p2Color = ((ImageView) v).getImageTintList().getDefaultColor();
         displayToast("Player 2 color selected");
     }
 
+    /**
+     * Saves the settings in Shared preferences.
+     * @param v
+     */
     public void saveSettings(View v){
 
         Spinner spinner = findViewById(R.id.spinerMode);

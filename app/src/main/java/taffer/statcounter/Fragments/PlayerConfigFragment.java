@@ -13,6 +13,11 @@ import taffer.statcounter.R;
 
 public class PlayerConfigFragment extends Fragment {
     private int player = 1;
+
+    /**
+     * Sets the arguments
+     * @param args
+     */
     @Override
     public void setArguments(@Nullable Bundle args) {
         if(args != null){
@@ -21,6 +26,13 @@ public class PlayerConfigFragment extends Fragment {
         super.setArguments(args);
     }
 
+    /**
+     * Creates the Fragment
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return View, the view.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -1,6 +1,5 @@
 package taffer.statcounter.Fragments;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +11,9 @@ import android.widget.TextView;
 
 import taffer.statcounter.R;
 
+/**
+ * Fragment for 1 Player game.
+ */
 public class Game1Fragment extends Fragment implements StatCounter{
     private String defaultHp;
     private String playerName;

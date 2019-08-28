@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class for building a Game.
+ */
 public class GameBuilder implements Serializable {
     private int noOfPlayers;
     private int count = 0;

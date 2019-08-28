@@ -1,5 +1,8 @@
 package taffer.statcounter.Fragments;
 
+/**
+ * Interface for all StatCounter activities/Fragements.
+ */
 public interface StatCounter {
 
     void setHP(int playerNo, int hp);

@@ -3,6 +3,9 @@ package taffer.statcounter.Model;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 
+/**
+ * Detects the Orientation of the unit.
+ */
 public class OrientationDetector implements Detector {
     public final static float[] UPSIDEDOWN = {0, 0, -10};
     public final static float[] RIGHTSIDEUP = {0, 0, 10};

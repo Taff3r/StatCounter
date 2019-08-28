@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import taffer.statcounter.R;
 
+/**
+ * Fragment for 2 Player game.
+ */
 public class Game2Fragment extends Fragment implements StatCounter {
     private String defaultHp;
     private String p1Name;

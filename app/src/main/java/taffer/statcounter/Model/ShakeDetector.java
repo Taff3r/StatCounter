@@ -4,6 +4,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 
+/**
+ * Detects if the phone is shaking.
+ */
 public class ShakeDetector implements Detector {
 
     private static final float SHAKE_THRESHOLD_GRAVITY = 2.7F;

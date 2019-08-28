@@ -4,6 +4,9 @@ import android.util.Log;
 import java.io.Serializable;
 import java.util.Map;
 
+/**
+ * Class for keeping count of the Players.
+ */
 public class Game implements Serializable {
     private Map<Integer, Player> players;
     private RandomHelper rand = new RandomHelper();

@@ -22,6 +22,9 @@ import taffer.statcounter.Fragments.PlayerConfigFragment;
 import taffer.statcounter.Fragments.PlayerFragment;
 import taffer.statcounter.Model.GameBuilder;
 
+/**
+ * Activity for building a Game.
+ */
 public class BuilderActivity extends AppCompatActivity {
     private GameBuilder gb;
     private int step = 0;
@@ -59,6 +62,10 @@ public class BuilderActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * OnClick function changing the displayed Fragment or Activity.
+     * @param v
+     */
     public void nextStage(View v){
         int initialStep = this.step;
         switch(this.step){
@@ -184,12 +191,17 @@ public class BuilderActivity extends AppCompatActivity {
             this.toast.show();
     }
 
+    /**
+     * onClick method. Selects the color.
+     * @param v, the clicked color.
+     */
     public void onColorClick(View v){
         ImageView clicked = (ImageView) v;
         ImageView display = findViewById(R.id.ivSelected);
         display.setVisibility(View.VISIBLE);
         display.setImageTintList(clicked.getImageTintList());
     }
+
 
     @Override
     public void onBackPressed() {

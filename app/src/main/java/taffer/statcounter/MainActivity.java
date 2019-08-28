@@ -15,6 +15,9 @@ import android.widget.ImageView;
 import taffer.statcounter.Model.Game;
 import taffer.statcounter.Model.GameBuilder;
 
+/**
+ * Homescreen activity.
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
