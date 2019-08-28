@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void quickGame(View v){
-        // TODO: ADD DEFAULT 1 AND 2 PLAYER NAMES AND COLORS FOR QUICK GAME
         SharedPreferences sp = getApplicationContext().getSharedPreferences(getString(R.string.prefKey), Context.MODE_PRIVATE);
         int p1Color = sp.getInt("def_p1Color", Color.WHITE);
         String mode = sp.getString("def_mode", "Constructed");
@@ -64,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void quick2PlayerGame(View v){
-        // TODO: ADD DEFAULT SETTINGS FOR QUICK GAME
         SharedPreferences sp = getApplicationContext().getSharedPreferences(getString(R.string.prefKey), Context.MODE_PRIVATE);
         int p1Color = sp.getInt("def_p1Color", Color.WHITE);
         int p2Color = sp.getInt("def_p2Color", Color.GRAY);

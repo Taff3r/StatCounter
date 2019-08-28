@@ -57,8 +57,7 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             Bundle b = getIntent().getExtras();
             this.game = (Game) b.get("GAME");
         } catch(Exception e){
-            // Ignore Exception
-            Log.e("THIS ", "SHOULDN'T HAPPEN");
+            // Shouldn't happen
         }
         Toolbar toolbar = findViewById(R.id.bar);
         this.players = this.game.noOfPlayers();
@@ -68,7 +67,6 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             toolbar.setBackgroundColor(this.game.getPlayerColor(2));
         }
         toolbar.setTitle("");
-        //((LinearLayout) findViewById(R.id.nav_view).getLa).setBackgroundColor(this.game.getPlayerColor(1)); // TODO: Maybe change color of nav_header
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
@@ -118,6 +116,17 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
         this.orientationDetector = new OrientationDetector(OrientationDetector.UPSIDEDOWN, 1);
     }
 
+    public void changePoison(View v){
+        switch (v.getId()){
+            case R.id.fabMinusPoison:
+                this.game.addPoisonCounters(1, -1);
+                break;
+            case R.id.fabPlusPoison:
+                this.game.addPoisonCounters(1, 1);
+                break;
+        }
+        this.fGame.setPoison(1, this.game.getPlayerPoison(1));
+    }
     public void changeHP(View v){
         if(game.noOfPlayers() == 1){
             switch (v.getId()){
@@ -170,7 +179,6 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        ActionBar actionBar = getSupportActionBar();
         switch (item.getItemId()) {
             case R.id.nav_reset:
                 this.resetGame();
@@ -223,6 +231,7 @@ public class GameActivity extends AppCompatActivity implements NavigationView.On
             this.fGame.setHP(2, this.game.defaultHP());
         }
         this.fGame.setHP(1, this.game.defaultHP());
+        this.fGame.setPoison(1, 0);
     }
 
    @Override

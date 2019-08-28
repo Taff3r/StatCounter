@@ -22,6 +22,7 @@ public class Game implements Serializable {
         for(Map.Entry<Integer, Player> e : players.entrySet()){
             Player p = e.getValue();
             p.addPoints(this.defaultHP - p.health());
+            p.addPoisonCounters(-p.poison());
         }
     }
     public void addPoints(int playerNumber, int points){
@@ -37,22 +38,20 @@ public class Game implements Serializable {
     }
 
     public int getPlayerHealth(int i){
-        Log.e("PLAYER ", players.get(i).toString());
-
         return players.get(i).health();
+    }
+
+    public int getPlayerPoison(int i){
+        return players.get(i).poison();
     }
     public int getPlayerColor(int i){
         return players.get(i).color();
     }
+
     public String getPlayerName(int i){
         return players.get(i).name();
     }
 
-
-    /**
-     * TODO: D20 or D6 ?
-     * @return
-     */
     public int rollDie(){
         return rand.rollDie();
     }

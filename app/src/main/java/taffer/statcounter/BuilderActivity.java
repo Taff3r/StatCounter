@@ -27,7 +27,6 @@ public class BuilderActivity extends AppCompatActivity {
     private int step = 0;
     private Toast toast;
 
-    // TODO: Make all Activities replace instead of stack.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +42,6 @@ public class BuilderActivity extends AppCompatActivity {
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.fragment_frame, new PlayerFragment()).commit();
-
-        // TODO: ADD COOL TRANSITION !!
     }
 
 
@@ -171,10 +168,10 @@ public class BuilderActivity extends AppCompatActivity {
                ft.replace(R.id.fragment_frame, fragment).commit();
                break;
             case 4:
-                // TODO: Add confirmation Fragment
                 Intent i = new Intent(this, GameActivity.class);
                 i.putExtra("GAME", this.gb.build());
                 startActivity(i);
+                this.finish();
                 break;
         }
     }
@@ -197,7 +194,9 @@ public class BuilderActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if(this.step == 0){
-            return; // TODO: Replace this activity with start menu
+            startActivity(new Intent(this, MainActivity.class));
+            this.finish();
+            return;
         }else if(this.step==4 && this.gb.getNoOfPlayers() == 1){
            this.step = 2;
            changeStep();

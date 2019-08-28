@@ -27,7 +27,7 @@ public class Game1Fragment extends Fragment implements StatCounter{
     private void setViews(){
         ((TextView)v.findViewById(R.id.tvHP)).setText(this.defaultHp);
         ((TextView)v.findViewById(R.id.tvHP)).setTextColor(this.color);
-        ((TextView)v.findViewById(R.id.tvName)).setText(this.playerName); // TODO: One player doesnt need name?
+        ((TextView)v.findViewById(R.id.tvName)).setText(this.playerName);
         v.findViewById(R.id.tvHP).setZ(4);
     }
 
@@ -43,10 +43,13 @@ public class Game1Fragment extends Fragment implements StatCounter{
         ((TextView) v.findViewById(R.id.tvHP)).setText(hp + "");
     }
 
+    public void setPoison(int player, int poison){
+        ((TextView) this.v.findViewById(R.id.tvPoison)).setText(poison + "");
+    }
+
     public void setDieValue(int i){
         this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
         ((TextView) this.v.findViewById(R.id.tvDieValue)).setText(i + "");
-        ((TextView) this.v.findViewById(R.id.tvDieValue)).setTextColor(Color.WHITE);
     }
 
     public void setCoinValue(boolean res){

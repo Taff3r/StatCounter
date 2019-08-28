@@ -1,7 +1,5 @@
 package taffer.statcounter.Model;
 
-import android.util.Log;
-
 import java.io.Serializable;
 
 public class Player implements Serializable {
@@ -14,7 +12,6 @@ public class Player implements Serializable {
         this.name = name;
         this.color = color;
         this.lifepoints = points;
-        Log.e("RUN", color + "");
     }
 
     public void addPoints(int points){
@@ -33,6 +30,9 @@ public class Player implements Serializable {
         return this.lifepoints;
     }
 
+    public int poison(){
+        return this.poisonCounters;
+    }
     public String name(){
         return this.name;
     }

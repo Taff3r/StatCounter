@@ -59,6 +59,10 @@ public class Game2Fragment extends Fragment implements StatCounter {
 
     }
 
+    @Override
+    public void setPoison(int playerNo, int poison) {
+        // Not implemented
+    }
 
     public void setDieValue(int i){
         this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
@@ -79,11 +83,4 @@ public class Game2Fragment extends Fragment implements StatCounter {
         this.setViews();
     }
 
-    public void playDiceSound() {
-        // TODO: Play sound
-    }
-
-    public void playCoinSound() {
-        // TODO: Play sound
-    }
 }

@@ -13,10 +13,8 @@ import android.content.Intent;
 import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
-
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
-    private String mode;
     private int p1Color;
     private int p2Color;
     private Toast toast;
@@ -29,24 +27,20 @@ public class SettingsActivity extends AppCompatActivity {
         this.editor = sp.edit();
     }
 
-    public void setDefaultMode(View v){
-        this.mode = ((Spinner) findViewById(R.id.spinerMode)).getSelectedItem().toString();
-    }
-
     public void setP1Color(View v){
-        Log.e("VIEW: ", v.toString());
         this.p1Color = ((ImageView) v).getImageTintList().getDefaultColor();
+        displayToast("Player 1 color selected");
     }
 
     public void setP2Color(View v){
-        Log.e("VIEW: ", v.toString());
         this.p2Color = ((ImageView) v).getImageTintList().getDefaultColor();
+        displayToast("Player 2 color selected");
     }
 
     public void saveSettings(View v){
-        if(this.mode != null){
-            this.editor.putString("def_mode", this.mode).commit();
-        }
+
+        Spinner spinner = findViewById(R.id.spinerMode);
+        this.editor.putString("def_mode", spinner.getSelectedItem().toString()).commit();
 
         if(this.p1Color != 0){
             this.editor.putInt("def_p1Color", this.p1Color).commit();
