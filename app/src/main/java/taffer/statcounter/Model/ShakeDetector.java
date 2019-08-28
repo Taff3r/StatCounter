@@ -10,6 +10,11 @@ public class ShakeDetector implements Detector {
     private static final int SHAKE_SLOP_TIME_MS = 500;
     private long mShakeTimestamp = 0;
 
+    /**
+     * Handles and evaluates an event.
+     * @param event, SensorEvent.
+     * @return int, SUCCESS or FAIL.
+     */
     @Override
     public int detectEvent(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {

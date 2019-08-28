@@ -6,10 +6,18 @@ import java.util.Random;
 public class RandomHelper implements Serializable {
     private Random rand = new Random();
 
+    /**
+     * Rolls a D20 die.
+     * @returns the result of the roll.
+     */
     public int rollDie(){
         return rand.nextInt(20) + 1;
     }
 
+    /**
+     * Flips a coin.
+     * @return boolean, the result of the flip.
+     */
     public boolean flipCoin(){
         return rand.nextBoolean();
     }

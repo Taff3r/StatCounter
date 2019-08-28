@@ -31,6 +31,10 @@ public class Game1Fragment extends Fragment implements StatCounter{
         v.findViewById(R.id.tvHP).setZ(4);
     }
 
+    /**
+     * Sets the arguments for the View.
+     * @param args, Bundle of arguments.
+     */
     @Override
     public void setArguments(@Nullable Bundle args) {
         super.setArguments(args);
@@ -39,19 +43,37 @@ public class Game1Fragment extends Fragment implements StatCounter{
         this.color = args.getInt("COLOR");
     }
 
+    /**
+     * Changes the layout to represent the Players health.
+     * @param player, player number.
+     * @param hp, the number to display.
+     */
     public void setHP(int player, int hp){
         ((TextView) v.findViewById(R.id.tvHP)).setText(hp + "");
     }
 
+    /**
+     * Changes the layout to represent the Players poison.
+     * @param player, player number.
+     * @param poison, the number to display.
+     */
     public void setPoison(int player, int poison){
         ((TextView) this.v.findViewById(R.id.tvPoison)).setText(poison + "");
     }
 
+    /**
+     * Changes the layout to represent the result of the roll.
+     * @param i, the number to display.
+     */
     public void setDieValue(int i){
         this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
         ((TextView) this.v.findViewById(R.id.tvDieValue)).setText(i + "");
     }
 
+    /**
+     * Sets the coin value.
+     * @param res, the value to represent.
+     */
     public void setCoinValue(boolean res){
         this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
         this.v.findViewById(R.id.tvDieValue).setZ(4);
@@ -62,6 +84,9 @@ public class Game1Fragment extends Fragment implements StatCounter{
         }
     }
 
+    /**
+     * Resets the game.
+     */
     @Override
     public void resetGame() {
         this.setViews();

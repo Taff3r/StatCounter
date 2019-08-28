@@ -11,7 +11,6 @@ public class OrientationDetector implements Detector {
     public final static float[] VERTICAL = {0, 10, 0};
     public final static float[] VERTICALUPSIDEDOWN = {0, -10, 0};
 
-
     private float[] successOrientation;
     private double accuracy;
 
@@ -25,6 +24,11 @@ public class OrientationDetector implements Detector {
         this.accuracy =  accuracy;
     }
 
+    /**
+     * Handles and evaluates an event.
+     * @param event, SensorEvent.
+     * @return int, SUCCESS or FAIL.
+     */
     @Override
     public int detectEvent(SensorEvent event) {
         if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){

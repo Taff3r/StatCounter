@@ -10,25 +10,50 @@ public class GameBuilder implements Serializable {
     private Map<Integer, Player> players = new HashMap<>();
     private String gameMode;
 
+    /**
+     * Sets the game mode.
+     * @param gameMode, string game mode to set.
+     * @return GameBuilder, this.
+     */
     public GameBuilder setGameMode(String gameMode){
         this.gameMode = gameMode;
         return this;
     }
 
+    /**
+     * Returns the current number of players.
+     * @return int
+     */
     public int getNoOfPlayers(){
         return this.noOfPlayers;
     }
+
+    /**
+     * Sets the number of players.
+     * @param noOfPlayers, the number of players.
+     * @return GameBuilder, this.
+     */
     public GameBuilder setNoOfPlayers(int noOfPlayers){
         this.noOfPlayers = noOfPlayers;
         return this;
     }
 
+    /**
+     * Adds a new Player
+     * @param name name of the player.
+     * @param color, the color for the player.
+     * @return GameBuilder, this.
+     */
     public GameBuilder addPlayer(String name, int color){
         this.count++;
         this.players.put(count, new Player(name, color, getLifePointsFromGameMode()));
         return this;
     }
 
+    /**
+     * Builds the Game.
+     * @return Game, the built game.
+     */
     public Game build(){
         return new Game(this.getLifePointsFromGameMode(), players);
     }

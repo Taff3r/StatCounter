@@ -17,7 +17,6 @@ public class PlayerConfigFragment extends Fragment {
     public void setArguments(@Nullable Bundle args) {
         if(args != null){
             this.player = args.getInt("PLAYER");
-            Log.e("FUCK", args.getInt("PLAYER") + "");
         }
         super.setArguments(args);
     }
@@ -25,8 +24,6 @@ public class PlayerConfigFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.e("PLAYER", this.player + "");
-        Log.e("REEEEE", this.player + "");
         if(this.player == 1){
             return inflater.inflate(R.layout.fragment_1player_layout, container, false);
         }else{

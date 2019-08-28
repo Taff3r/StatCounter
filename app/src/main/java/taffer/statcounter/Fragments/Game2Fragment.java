@@ -25,6 +25,10 @@ public class Game2Fragment extends Fragment implements StatCounter {
         return v;
     }
 
+    /**
+     * Sets the arguments for the View.
+     * @param args, Bundle of arguments.
+     */
     @Override
     public void setArguments(@Nullable Bundle args) {
         super.setArguments(args);
@@ -50,6 +54,11 @@ public class Game2Fragment extends Fragment implements StatCounter {
         this.v.findViewById(R.id.tvDieValue).setVisibility(View.INVISIBLE);
     }
 
+    /**
+     * Changes the layout to represent the Players health.
+     * @param player, player number.
+     * @param hp, the number to display.
+     */
     public void setHP(int player, int hp){
         if(player == 1){
             ((TextView) v.findViewById(R.id.tvHP1)).setText(hp + "");
@@ -59,16 +68,29 @@ public class Game2Fragment extends Fragment implements StatCounter {
 
     }
 
+    /**
+     * Changes the layout to represent the Players poison.
+     * @param player, player number.
+     * @param poison, the number to display.
+     */
     @Override
-    public void setPoison(int playerNo, int poison) {
+    public void setPoison(int player, int poison) {
         // Not implemented
     }
 
+    /**
+     * Changes the layout to represent the result of the roll.
+     * @param i, the number to display.
+     */
     public void setDieValue(int i){
         this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
         ((TextView) this.v.findViewById(R.id.tvDieValue)).setText(i + "");
     }
 
+    /**
+     * Sets the coin value.
+     * @param res, the value to represent.
+     */
     public void setCoinValue(boolean res){
         this.v.findViewById(R.id.tvDieValue).setVisibility(View.VISIBLE);
         if(res){
@@ -78,6 +100,9 @@ public class Game2Fragment extends Fragment implements StatCounter {
         }
     }
 
+    /**
+     * Resets the game.
+     */
     @Override
     public void resetGame() {
         this.setViews();
