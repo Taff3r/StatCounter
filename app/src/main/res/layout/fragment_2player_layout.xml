@@ -7,54 +7,6 @@
     android:background="#FFFFFF">
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabNext"
-        android:layout_width="56dp"
-        android:layout_height="64dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="28dp"
-        android:background="@color/colorAccent"
-        android:clickable="true"
-        android:onClick="nextStage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_next" />
-
-    <ImageView
-        android:id="@+id/ivDice"
-        android:layout_width="133dp"
-        android:layout_height="0dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="168dp"
-        app:layout_constraintBottom_toTopOf="@+id/iv3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_brush" />
-
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="29dp"
-        android:text="@string/pickName"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/iv2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/ivDice"
-        app:layout_constraintTop_toBottomOf="@+id/ivDice" />
-
     <EditText
         android:id="@+id/etName"
         android:layout_width="wrap_content"
@@ -73,9 +25,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/ivDice"
+        android:layout_width="133dp"
+        android:layout_height="0dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="168dp"
+        app:layout_constraintBottom_toTopOf="@+id/iv3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_brush" />
+
+    <ImageView
         android:id="@+id/iv1"
-        android:layout_width="46dp"
-        android:layout_height="46dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -91,7 +59,7 @@
 
     <ImageView
         android:id="@+id/iv4"
-        android:layout_width="47dp"
+        android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
@@ -113,14 +81,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="22dp"
+        android:layout_marginEnd="52dp"
         android:onClick="onColorClick"
         android:tint="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="@+id/iv3"
         app:layout_constraintEnd_toStartOf="@+id/iv4"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toEndOf="@+id/tvColor"
         app:layout_constraintTop_toTopOf="@+id/iv3"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_circle" />
@@ -132,33 +97,15 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="52dp"
         android:layout_marginBottom="21dp"
         android:onClick="onColorClick"
         android:padding="1dp"
         android:tint="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/ivSelected"
-        app:layout_constraintEnd_toStartOf="@+id/tvColor"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/iv1"
         app:layout_constraintTop_toBottomOf="@+id/ivDice"
         app:srcCompat="@drawable/ic_circle" />
-
-    <TextView
-        android:id="@+id/tvColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="@string/color"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etName" />
 
     <ImageView
         android:id="@+id/ivSelected"
@@ -173,5 +120,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv3"
         app:srcCompat="@drawable/ic_circle" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabNext"
+        android:layout_width="56dp"
+        android:layout_height="64dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
+        android:background="@color/colorAccent"
+        android:clickable="true"
+        android:onClick="nextStage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_next" />
 
 </android.support.constraint.ConstraintLayout>
