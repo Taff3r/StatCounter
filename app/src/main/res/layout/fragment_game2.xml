@@ -68,7 +68,7 @@
             app:layout_constraintVertical_bias="0.14" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabMinus1P2"
+            android:id="@+id/fabPlus1P2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
@@ -78,10 +78,10 @@
             android:rotation="180"
             app:layout_constraintBottom_toBottomOf="@+id/ivHP2"
             app:layout_constraintEnd_toStartOf="@+id/ivHP2"
-            app:srcCompat="@drawable/ic_one" />
+            app:srcCompat="@drawable/ic_plus_one" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabPlus1P2"
+            android:id="@+id/fabMinus1P2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -91,32 +91,32 @@
             android:rotation="180"
             app:layout_constraintBottom_toBottomOf="@+id/ivHP2"
             app:layout_constraintStart_toEndOf="@+id/ivHP2"
-            app:srcCompat="@drawable/ic_plus_one" />
+            app:srcCompat="@drawable/ic_one" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabPlus5P2"
+            android:id="@+id/fabMinus5P2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:clickable="true"
             android:onClick="changeHP"
             android:rotation="180"
-            app:layout_constraintBottom_toTopOf="@+id/fabPlus1P2"
-            app:layout_constraintStart_toStartOf="@+id/fabPlus1P2"
-            app:srcCompat="@drawable/ic_plus5" />
+            app:layout_constraintBottom_toTopOf="@+id/fabMinus1P2"
+            app:layout_constraintStart_toStartOf="@+id/fabMinus1P2"
+            app:srcCompat="@drawable/ic_minus5" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabMinus5P2"
+            android:id="@+id/fabPlus5P2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="132dp"
-            android:layout_marginBottom="13dp"
+            android:layout_marginBottom="12dp"
             android:clickable="true"
             android:onClick="changeHP"
             android:rotation="180"
-            app:layout_constraintBottom_toTopOf="@+id/fabMinus1P2"
-            app:layout_constraintEnd_toStartOf="@+id/fabPlus5P2"
-            app:srcCompat="@drawable/ic_minus5" />
+            app:layout_constraintBottom_toTopOf="@id/fabPlus1P2"
+            app:layout_constraintEnd_toStartOf="@+id/fabMinus5P2"
+            app:srcCompat="@drawable/ic_plus5" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
